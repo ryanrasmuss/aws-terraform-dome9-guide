@@ -1,6 +1,6 @@
 # Getting started with AWS, Terraform, and Dome9
 
-### Login to your AWS Accoun
+### Login to your AWS Account
 
 Register and sign into your AWS console at https://console.aws.amazon.com
 
