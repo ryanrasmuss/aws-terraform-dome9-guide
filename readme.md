@@ -8,6 +8,8 @@ Generate an AWS key pair for your EC2 instances. We will refer this as ``your-aw
 
 Install AWS CLI. Instructions can be found here: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
 
+Once installed, run ``aws configure`` and add your key pairs. You can find this information in the AWS web console under ``My Security Credentials``.
+
 We will need you to have ``$HOME/.aws/`` defined with a credentials file. Terraform will use this location.
 
 ### Register Dome9
@@ -38,7 +40,6 @@ resource "aws_instance" "example" {
     ami = "ami-03caa3f860895f82e"
     instance_type = "t2.micro"
     key_name = "your-aws-key"
-
 }
 ```
 

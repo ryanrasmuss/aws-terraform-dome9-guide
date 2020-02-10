@@ -17,7 +17,7 @@ resource "aws_vpc" "application-vpc" {
 # Step 2. Build Subnet
 
 resource "aws_subnet" "application-subnet-1" {
-    vpc_id = "${aws_vpc.application-vpc.id}"
+    vpc_id = aws_vpc.application-vpc.id
     cidr_block = "10.0.0.0/24"
     availability_zone = "us-west-1b"
 
@@ -29,7 +29,7 @@ resource "aws_subnet" "application-subnet-1" {
 # Step 3. Build IGW
 
 resource "aws_internet_gateway" "application-igw" {
-    vpc_id = "${aws_vpc.application-vpc.id}"
+    vpc_id = aws_vpc.application-vpc.id
 
     tags = {
         Name = "application igw"
@@ -39,12 +39,12 @@ resource "aws_internet_gateway" "application-igw" {
 # Step 4. Build Route Table
 
 resource "aws_route_table" "application-rtb" {
-    vpc_id = "${aws_vpc.application-vpc.id}"
+    vpc_id = aws_vpc.application-vpc.id
 
     # Point default to igw
     route {
         cidr_block = "0.0.0.0/0"
-        gateway_id = "${aws_internet_gateway.application-igw.id}"
+        gateway_id = aws_internet_gateway.application-igw.id
     }
 
     tags = {
@@ -55,8 +55,8 @@ resource "aws_route_table" "application-rtb" {
 # Step 5. Associate Route Table to Subnet
 
 resource "aws_route_table_association" "application-rtb-association" {
-    subnet_id = "${aws_subnet.application-subnet-1.id}"
-    route_table_id = "${aws_route_table.application-rtb.id}"
+    subnet_id = aws_subnet.application-subnet-1.id
+    route_table_id = aws_route_table.application-rtb.id
 }
 
 # Step 6. Build Security Group
@@ -64,7 +64,7 @@ resource "aws_route_table_association" "application-rtb-association" {
 resource "aws_security_group" "application-sg" {
     name = "application-sg"
     description = "application requires http and ssh"
-    vpc_id = "${aws_vpc.application-vpc.id}"
+    vpc_id = aws_vpc.application-vpc.id
 
     ingress {
         from_port   = 22
@@ -98,8 +98,8 @@ resource "aws_instance" "application-instance" {
     ami = "ami-03caa3f860895f82e"
     instance_type = "t2.micro"
     key_name = "your-key-here"
-    vpc_security_group_ids = ["${aws_security_group.application-sg.id}" ]
-    subnet_id = "${aws_subnet.application-subnet-1.id}"
+    vpc_security_group_ids = [ aws_security_group.application-sg.id ]
+    subnet_id = aws_subnet.application-subnet-1.id
     associate_public_ip_address = true
 
     user_data = <<-EOF

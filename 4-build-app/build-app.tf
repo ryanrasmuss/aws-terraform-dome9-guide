@@ -104,11 +104,14 @@ resource "aws_instance" "application-instance" {
 
     user_data = <<-EOF
 #!/bin/bash
-echo "Hello World!" >> index.html
 sudo yum update -y
 sudo yum install git -y
-sudo yum install python3 -y
-sudo python3 -m http.server 80 &
+sudo yum install docker -y
+sudo systemctl start docker
+sudo systemctl enable docker
+git clone https://github.com/ryanrasmuss/browser-info
+sudo docker build -t browser-info browser-info/.
+sudo docker run -p 80:80 browser-info
 EOF
     
     tags = {
