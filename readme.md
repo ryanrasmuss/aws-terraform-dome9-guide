@@ -178,6 +178,8 @@ Takeaways:
 - How does terraform save state?
 - How do you change a component in the deployment? Do you have to redeploy everything?
 
+Try to ssh into this instance. The user name is ``ec2-user``.
+
 Run ``terraform destroy``
 
 ### Build a simple application with provisioning
