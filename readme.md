@@ -45,6 +45,8 @@ resource "aws_instance" "example" {
 
 Change the ``key_name`` parameter for the name of your aws key.
 
+First, run ``terraform init``.
+
 Run ``terraform plan`` to check for errors. If there are none, run ``terraform apply``.
 
 You should be able to ssh in your new instance via: ``ssh -i your-aws-key ec2-user@public_ip``
