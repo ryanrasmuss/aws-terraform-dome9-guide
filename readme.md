@@ -4,19 +4,23 @@
 
 Register and sign into your AWS console at https://console.aws.amazon.com
 
-Generate an AWS key pair for your EC2 instances. We will refer this as ``your-aws-key`` in this guide.
-
-Install AWS CLI. Instructions can be found here: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
-
-Once installed, run ``aws configure`` and add your key pairs. You can find this information in the AWS web console under ``My Security Credentials``.
-
-We will need you to have ``$HOME/.aws/`` defined with a credentials file. Terraform will use this location.
-
 ### Register Dome9
 
 Sign up at https://secure.dome9.com
 
 Click the '+' sign next to the AWS symbol to add your AWS account. Follow the instructions on Dome9.
+
+### Generate your host keys
+
+Generate an AWS key pair for your EC2 instances. We will refer this as ``your-aws-key`` in this guide.
+
+### Install AWS CLI
+
+Instructions can be found here: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
+
+Once installed, run ``aws configure`` and add your key pairs. You can find this information in the AWS web console under ``My Security Credentials``.
+
+We will need you to have ``$HOME/.aws/`` defined with a credentials file. Terraform will use this location.
 
 ### Install Terraform
 
